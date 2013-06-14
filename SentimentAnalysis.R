@@ -1,4 +1,5 @@
 # Author: Jitender Aswani Co-Founder @datadolph.in
+# Co-Author: Rajani Aswani Co-Founder @datadolph.in
 # Date: 2012-30-1
 # Description: Extracts tweets from twitter and run setniment analysis on it
 # Packages Used: RCurl, XML, TwitteR, RJSONIO
@@ -148,6 +149,7 @@ searchTwitterHandle <- function(tw.handle, certificate.path, how.many=300) {
 downloadCACertFile <- function(){
   download.file(url="http://curl.haxx.se/ca/cacert.pem", destfile="cacert.pem")
 }
+
 # Certain words may not be relevant for your secenario to be counted as positive and negative on Hu and Liu list
 # Remove them before sending the words to this list
 # Fitler words
@@ -157,34 +159,8 @@ filterWords <- function(words){
   return(words)
 }
 
-
-#get tweets
+# example
+#get tweets and perform sentiment analysis
 tweets <- searchTwitterHandle(twitter.handle, CERTIFICATE_PATH, 300)
-
-if("data.frame" %in% class(tweets))
-  return(data.frame(error="Oops error, obviously this is embarassing, please try something else."))
-
-if(length(tweets) < 30)
-  return(data.frame(error=paste("Oops not enough number of tweets for this company using twitter handle "
-                                ,  twitter.handle, ". ", length(tweets), " tweets fetched.", sep="")))
-
-tweets <- sapply(tweets, function(x) x$getText())
-return(buildTagCloud(tweets, 3))
-
-
-response.data <-  try(sales.data[grep(productName, product,
-                                        ignore.case=T)][,list(Order_Date=paste(year, quarter, sep="-"), Order_Amount=copa_cc_amt,
-                                                            Products=product),
-                                                      by=list(quarter, year)][order(year, quarter)][,1:2:=NULL], silent=TRUE)
-
-switch(action, 
-         "tx" = {
-           return (getProductTx(tolower(productName)))
-         },
-         "wc" = {
-           return (buildProductTagCloud(tolower(productName)))
-         },
-         "ts" = {
-           return (buildProductTwitterSentiment(tolower(productName)))
-         }
+summary <- performSentimentAnalysis(tweets)
 

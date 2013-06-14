@@ -1,7 +1,7 @@
 # Author: Jitender Aswani Co-Founder @datadolph.in
 # Co-Author: Rajani Aswani Co-Founder @datadolph.in
 # Date: 2012-30-1
-# Description: Extracts tweets from twitter and run setniment analysis on it
+# Description: Extracts tweets from twitter and run sentiment analysis on using list of sentiment words from Hu and Liu
 # Packages Used: RCurl, XML, TwitteR, RJSONIO
 # Blog Reference: http://www.r-bloggers.com/updated-sentiment-analysis-and-a-word-cloud-for-netflix-the-r-way/
 # Download

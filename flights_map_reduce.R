@@ -1,4 +1,3 @@
-# Authors: Jitender Aswani, Co-Founder @ datadolph.in
 # Authors: Rajani Aswani Co-Founder @ datadolph.in
 # Date: 2013-15-5
 # Description: The Airline data set consists of flight arrival and departure details for all commercial flights from 1987 to 2008. 

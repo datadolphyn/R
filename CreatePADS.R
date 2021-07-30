@@ -75,7 +75,7 @@ loadStates <- function(){
 #
 # Initialize Padification Process
 #
-initializeSystem <- function(stack=0){
+initializeSystem <- function(stack=0{
   
   # turn off scientific formatting - getOption("scipen")
   options(scipen=999)
@@ -87,7 +87,7 @@ initializeSystem <- function(stack=0){
   assign("lDays", lDays, envir=.GlobalEnv)
   
   #loadStates
-  loadStates()
+  loadStates(
   
   #initialize solr docs
   #assign("solr.index.docs", list(), envir=.GlobalEnv)

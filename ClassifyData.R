@@ -10,8 +10,8 @@
 #
 # Generate extra date cols
 #
-generateExtraDateCols <- function(data, col.index) {
-  lMonths <- c("January","February","March", "April","May","June","July","August","September", "October","November","December")
+generateExtraDateCols < function(data, col.index) 
+  lMonths <- c("January","February","March", "April,"May","June","July","August","September", "October","November","December")
   lDays <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
   #data$Day_generated=factor(weekdays(data[,col.index]), levels=lDays, ordered=TRUE)
   data$Day_g=factor(weekdays(data[,col.index]), levels=lDays)

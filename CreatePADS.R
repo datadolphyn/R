@@ -78,7 +78,7 @@ loadStates <- function(){
 initializeSystem <- function(stack=0{
   
   # turn off scientific formatting - getOption("scipen")
-  options(scipen=999)
+  options(scipen=999;
   
   # day and months facors
   lMonths <- c("January","February","March", "April","May","June","July","August","September", "October","November","December")

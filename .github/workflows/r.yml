@@ -23,5 +23,5 @@ jobs:
         shell: Rscript {0}
 
       - name: Lint root directory
-        run: lintr::lint('CreatePADS.R')
+        run: lintr::lint('ClassifyData.R')
         shell: Rscript {0}

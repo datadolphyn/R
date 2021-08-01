@@ -1,31 +1,13 @@
-on:
-  push:
-    branches:
-      - main
-      - master
-  pull_request:
-    branches:
-      - main
-      - master
-
-name: lint-project
+name: R Build and Checks
+on: [push, pull_request]
 
 jobs:
-  lint-project:
-    runs-on: linux
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+  build:
+    runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2
-
-      - uses: r-lib/actions/setup-r@v1
-
-      - name: R-actions
-        # You may pin to the exact commit or the version.
-        # uses: Swechhya/R-actions@772117ee961f81f5e2b00c2406e84456dd62f7a4
-        uses: Swechhya/R-actions@v1.2
-        with:
-          # What should be run? One of: ["all", "build"]
-          action: all # optional, default is all
-          # Is Bioconductor package needed? One of [true, false]
-          needsBioc: false# optional
+    - uses: actions/checkout@v1
+    - name: R Build and Checks
+      uses: Swechhya/R-actions@v1.2
+      with:
+        action: 'all'
+        needsBioc: false

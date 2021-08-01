@@ -1,32 +1,31 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-#
-# See https://github.com/r-lib/actions/tree/master/examples#readme for
-# additional example workflows available for the R community.
-
-name: R
-
 on:
   push:
-    branches: [ master ]
+    branches:
+      - main
+      - master
   pull_request:
-    branches: [ master ]
+    branches:
+      - main
+      - master
+
+name: lint-project
 
 jobs:
-  build:
+  lint-project:
     runs-on: macOS-latest
-
-
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
+
       - uses: r-lib/actions/setup-r@v1
-      - name: Install dependencies
-        run: |
-          install.packages(c("remotes", "rcmdcheck"))
-          remotes::install_deps(dependencies = TRUE)
-        shell: Rscript {0}
-      - name: Check
-        run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
-        shell: Rscript {0}
+
+      - name: R-actions
+        # You may pin to the exact commit or the version.
+        # uses: Swechhya/R-actions@772117ee961f81f5e2b00c2406e84456dd62f7a4
+        uses: Swechhya/R-actions@v1.2
+        with:
+          # What should be run? One of: ["all", "build"]
+          action: all # optional, default is all
+          # Is Bioconductor package needed? One of [true, false]
+          needsBioc: false# optional

@@ -1,13 +1,29 @@
-name: R Build and Checks
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+name: lint-project
 
 jobs:
-  build:
-    runs-on: ubuntu-18.04
+  lint-project:
+    runs-on: macOS-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
-    - uses: actions/checkout@v1
-    - name: R Build and Checks
-      uses: Swechhya/R-actions@v1.2
-      with:
-        action: 'all'
-        needsBioc: false
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-r@v1
+
+      - name: Install lintr
+        run: install.packages("lintr")
+        shell: Rscript {0}
+
+      - name: Lint root directory
+        run: lintr::lint(filename = "ClassifyData.R")
+        shell: Rscript {0}

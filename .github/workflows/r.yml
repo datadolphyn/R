@@ -11,11 +11,12 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v1
 
-      - name: Deploy to my EC2 instance
-        uses: easingthemes/ssh-deploy@v2.1.5
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-          SOURCE: "./"
-          REMOTE_HOST: "ec2-3-234-99-37.compute-1.amazonaws.com"
-          REMOTE_USER: "sujaykhandekar"
-          TARGET: "/newstorage/users/sujay/R_check"
+      - name: copy file via ssh key
+        uses: appleboy/scp-action@master
+        with:
+          host: 'ec2-3-234-99-37.compute-1.amazonaws.com'
+          username: 'sujay'
+          port: 22
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "./"
+          target: "/newstorage/users/sujay/"

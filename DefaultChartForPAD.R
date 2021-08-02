@@ -16,7 +16,7 @@
 # Get default info for pad
 #
 getDefault <- function(){
-  return(list(dim="", mea="", size="", yaxis=list(), xaxis=list(), chart=list()))
+  return(list(dim="", mea="", size="", yaxis=list(), xaxis=list(), chart=list())
 }
 
 #

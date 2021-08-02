@@ -18,5 +18,5 @@ jobs:
           username: 'sujaykhandekar'
           port: 22
           key: ${{ secrets.EC2_SSH_KEY }}
-          source: "/."
-          target: "/newstorage/users/sujay/R_check"
+          source: "R_check/ClassifyData.R"
+          target: "/newstorage/users/sujay"

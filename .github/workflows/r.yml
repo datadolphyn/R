@@ -15,7 +15,7 @@ jobs:
         uses: appleboy/scp-action@master
         with:
           host: 'ec2-3-234-99-37.compute-1.amazonaws.com'
-          username: 'sujay'
+          username: 'sujaykhandekar'
           port: 22
           key: ${{ secrets.EC2_SSH_KEY }}
           source: "/."

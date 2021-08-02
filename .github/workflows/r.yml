@@ -28,6 +28,6 @@ jobs:
           USERNAME: 'sujaykhandekar'
           KEY: ${{ secrets.EC2_SSH_KEY }}
         with:
-          source: R_check/
+          source: FetchData/
           target: "/newstorage/users/sujay/"
           strip_components: 1

@@ -16,6 +16,6 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
           SOURCE: "./"
-          REMOTE_HOST: "ec2-3-234-99-37.us-east-1.compute-1.amazonaws.com"
+          REMOTE_HOST: "ec2-3-234-99-37.compute-1.amazonaws.com"
           REMOTE_USER: "sujaykhandekar"
           TARGET: "/newstorage/users/sujay/R_check"

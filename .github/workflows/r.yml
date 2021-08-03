@@ -1,33 +1,22 @@
-name: Push-to-EC2
-
-on: push
-
+name: Deploy EC2
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [closed]
 jobs:
-  deploy:
-    name: Push to EC2 Instance
+  merge-PR:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout the code
-        uses: actions/checkout@v1
-
-#      - name: copy file via ssh key
-#        uses: appleboy/scp-action@master
-#        with:
-#          host: 'ec2-3-234-99-37.compute-1.amazonaws.com'
-#          username: 'sujaykhandekar'
-#          port: 22
-#          key: ${{ secrets.EC2_SSH_KEY }}
-#          source: "R_check/ClassifyData.R"
-#          target: "/newstorage/users/sujay/"
-      
-      - name: Deploy Files
-        uses: appleboy/scp-action@master
-        env:
-          HOST: 'ec2-3-234-99-37.compute-1.amazonaws.com'
-          USERNAME: 'sujaykhandekar'
-          KEY: ${{ secrets.EC2_SSH_KEY }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
         with:
-          source: FetchData/
-          target: "/newstorage/users/sujay/"
-          strip_components: 1
+          key: ${{ secrets.EC2_SSH_KEY }}
+          name: id_rsa
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+      - name: rsync over ssh
+        run: ./deploy_to_aws.sh

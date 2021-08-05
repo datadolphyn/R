@@ -7,7 +7,7 @@
 # For more information see: https://creativecommons.org/licenses/by-nc/3.0/
 # All rights reserved.
 require(data.table)
-startup <- function() {
+startup <- function( {
   #initialize system
   initializeSystem(0)
   
